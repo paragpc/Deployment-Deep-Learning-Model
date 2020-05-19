@@ -38,7 +38,7 @@ $(document).ready(function () {
             success: function (data) {
                 $('.wheel').hide();
                 $('#result').fadeIn(600);
-                $('#result').text(' Result:  ' + data);
+                $('#result').text(' Yoga Pose:  ' + data);
                 console.log('Predicted the yoga pose');
             },
         });
