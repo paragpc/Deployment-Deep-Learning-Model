@@ -1,4 +1,8 @@
-.img-preview {
+input[type="file"] {
+    display: none;
+}
+
+.load-image {
     width: 256px;
     height: 256px;
     position: relative;
@@ -10,7 +14,7 @@
     margin-right: auto;
 }
 
-.img-preview>div {
+.load-image>div {
     width: 100%;
     height: 100%;
     background-size: 256px 256px;
@@ -18,10 +22,6 @@
     background-position: center;
     margin-left: auto;
     margin-right: auto;
-}
-
-input[type="file"] {
-    display: none;
 }
 
 .upload-label{

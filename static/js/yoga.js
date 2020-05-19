@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.select-image').hide();
+    $('.select-image-result').hide();
     $('.wheel').hide();
     $('#result').hide();
 
@@ -7,16 +7,16 @@ $(document).ready(function () {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
+                $('#preview-image').css('background-image', 'url(' + e.target.result + ')');
+                $('#preview-image').hide();
+                $('#preview-image').fadeIn(650);
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
 
     $("#imageUpload").change(function () {
-        $('.select-image').show();
+        $('.select-image-result').show();
         $('#btn-predict').show();
         $('#result').text('');
         $('#result').hide();
