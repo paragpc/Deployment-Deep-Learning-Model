@@ -7,24 +7,24 @@ import re
 import numpy as np
 
 # Keras
-from keras.applications.imagenet_utils import preprocess_input, decode_predictions
-from keras.models import load_model
-from keras.preprocessing import image
+from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
+from tensorflow.keras.applications.vgg16 import decode_predictions
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import load_model, model_from_json
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
-from gevent.pywsgi import WSGIServer
 
 # Define a flask app
 app = Flask(__name__)
 
 # Model saved with Keras model.save()
-MODEL_PATH = 'models/model_resnet.h5'
+MODEL_PATH = 'inception.h5'
 
 # Load your trained model
 model = load_model(MODEL_PATH)
-model._make_predict_function()          # Necessary
+#model._make_predict_function()          # Necessary
 # print('Model loaded. Start serving...')
 
 # You can also use pretrained model from Keras
@@ -36,7 +36,7 @@ print('Model loaded. Check http://127.0.0.1:5000/')
 
 
 def model_predict(img_path, model):
-    img = image.load_img(img_path, target_size=(224, 224))
+    img = image.load_img(img_path, target_size=(299, 299))
 
     # Preprocessing the image
     x = image.img_to_array(img)
@@ -45,7 +45,7 @@ def model_predict(img_path, model):
 
     # Be careful how your trained model deals with the input
     # otherwise, it won't make correct prediction!
-    x = preprocess_input(x, mode='caffe')
+    x = preprocess_input(x)
 
     preds = model.predict(x)
     return preds
@@ -71,12 +71,8 @@ def upload():
 
         # Make prediction
         preds = model_predict(file_path, model)
-
-        # Process your result for human
-        # pred_class = preds.argmax(axis=-1)            # Simple argmax
-        pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
-        result = str(pred_class[0][0][1])               # Convert to string
-        return result
+        print("***** " + str(preds[0]))
+        return str(preds[0])
     return None
 
 
