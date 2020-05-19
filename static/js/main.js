@@ -35,7 +35,7 @@ $(document).ready(function () {
         // Make prediction by calling api /predict
         $.ajax({
             type: 'POST',
-            url: '/predict',
+            url: '/predict_yoga_pose',
             data: form_data,
             contentType: false,
             cache: false,
