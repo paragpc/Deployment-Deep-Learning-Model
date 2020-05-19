@@ -5,6 +5,8 @@ import os
 import glob
 import re
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 
 # Keras
 from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
@@ -72,7 +74,24 @@ def upload():
         # Make prediction
         preds = model_predict(file_path, model)
         print("***** " + str(preds[0]))
-        return str(preds[0])
+
+        # Map prediction to class
+        positions = {0: 'DownwardFacingDog',
+                     1: 'LowLunge',
+                     2: 'Planks',
+                     3: 'ReversePlanks',
+                     4: 'SeatedForwardBend',
+                     5: 'SidePlanks',
+                     6: 'TreePose',
+                     7: 'TrianglePose',
+                     8: 'WarriorPose'}
+        cur_max_ind = 0
+        cur_max = 0
+        for j in range(len(preds[0])):  # or range(len(theta))
+            if preds[0][j] > cur_max:
+                cur_max = preds[0][j]
+                cur_max_ind = j
+        return positions[cur_max_ind]
     return None
 
 
