@@ -1,10 +1,8 @@
 $(document).ready(function () {
-    // Init
-    $('.image-section').hide();
-    $('.loader').hide();
+    $('.select-image').hide();
+    $('.wheel').hide();
     $('#result').hide();
 
-    // Upload Preview
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -16,23 +14,19 @@ $(document).ready(function () {
             reader.readAsDataURL(input.files[0]);
         }
     }
+
     $("#imageUpload").change(function () {
-        $('.image-section').show();
+        $('.select-image').show();
         $('#btn-predict').show();
         $('#result').text('');
         $('#result').hide();
         readURL(this);
     });
 
-    // Predict
     $('#btn-predict').click(function () {
         var form_data = new FormData($('#upload-file')[0]);
-
-        // Show loading animation
         $(this).hide();
-        $('.loader').show();
-
-        // Make prediction by calling api /predict
+        $('.wheel').show();
         $.ajax({
             type: 'POST',
             url: '/predict_yoga_pose',
@@ -42,11 +36,10 @@ $(document).ready(function () {
             processData: false,
             async: true,
             success: function (data) {
-                // Get and display the result
-                $('.loader').hide();
+                $('.wheel').hide();
                 $('#result').fadeIn(600);
                 $('#result').text(' Result:  ' + data);
-                console.log('Success!');
+                console.log('Predicted the yoga pose');
             },
         });
     });

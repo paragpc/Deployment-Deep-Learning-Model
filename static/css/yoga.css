@@ -16,6 +16,8 @@
     background-size: 256px 256px;
     background-repeat: no-repeat;
     background-position: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input[type="file"] {
@@ -24,27 +26,29 @@ input[type="file"] {
 
 .upload-label{
     display: inline-block;
-    padding: 12px 30px;
-    background: #39D2B4;
+    background: #008080;
     color: #fff;
     font-size: 1em;
     transition: all .4s;
     cursor: pointer;
     text-align: center;
+    padding: 10px 20px;
 }
 
 .upload-label:hover{
-    background: #34495E;
-    color: #39D2B4;
+    background: #87CEEB;
+    color: #000000;
 }
 
-.loader {
-    border: 8px solid #f3f3f3; /* Light grey */
-    border-top: 8px solid #3498db; /* Blue */
+.wheel {
+    border-top: 8px solid #3498db;
     border-radius: 50%;
+    border: 8px solid #f3f3f3;
     width: 50px;
     height: 50px;
     animation: spin 1s linear infinite;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @keyframes spin {

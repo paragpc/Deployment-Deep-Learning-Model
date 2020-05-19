@@ -6,29 +6,25 @@
         <p class="lead">Just upload an image and we will predict the yoga pose depicted in the picture...</p>
         <hr class="my-4">
     </div>
-    <form id="upload-file" method="post" enctype="multipart/form-data">
+    <form id="upload-file" method="post" enctype="multipart/form-data" style="text-align: center;">
         <label for="imageUpload" class="upload-label">
             Select Image
         </label>
         <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
     </form>
 
-    <div class="image-section" style="display:none;">
+    <div class="select-image" style="display:none;">
         <div class="img-preview">
             <div id="imagePreview">
             </div>
         </div>
-        <div>
-            <button type="button" class="btn btn-info btn-lg" id="btn-predict">Predict</button>
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-info btn-lg" id="btn-predict">Predict Yoga Pose...</button>
         </div>
     </div>
-
-    <div class="loader" style="display:none;"></div>
-
-    <h3 id="result">
+    <div class="wheel" style="display:none;"></div>
+    <h3 id="result" style="text-align: center;">
         <span> </span>
     </h3>
-
 </div>
-
 {% endblock %}
